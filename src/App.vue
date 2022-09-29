@@ -1,18 +1,20 @@
 <template>
   <div class="ctr">
+    
+    <transition name="fade" mode="out-in">
+      <Questions 
+      v-if="questionsAnswered < questions.length"
+      :questions="questions"
+      :questionsAnswered="questionsAnswered"
+      @question-answered="questionAnswered"
+      />
 
-    <Questions 
-    v-if="questionsAnswered < questions.length"
-    :questions="questions"
-    :questionsAnswered="questionsAnswered"
-    @question-answered="questionAnswered"
-    />
-
-    <Result
-      v-else
-      :results="results"
-      :totalCorrect="totalCorrect"
-    />
+      <Result
+        v-else
+        :results="results"
+        :totalCorrect="totalCorrect"
+      />
+    </transition>
 
     <Reset 
       :quizDone="quizDone"
