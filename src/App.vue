@@ -14,19 +14,23 @@
       :totalCorrect="totalCorrect"
     />
 
-    <button type="button" class="reset-btn">Reset</button>
-    
+    <Reset 
+      :quizDone="quizDone"
+      @quiz-reset="quizReset"
+    />
+
   </div>
 </template>
 
 <script>
 import Questions from './components/Questions.vue';
 import Result from './components/Result.vue';
+import Reset from './components/Reset.vue';
 
 export default {
   name: "App",
   components: {
-    Questions, Result
+    Questions, Result, Reset
   },
   data() {
     return {
@@ -116,6 +120,17 @@ export default {
       }
 
       this.questionsAnswered++;
+    },
+    quizReset() {
+      this.questionsAnswered = 0;
+      this.totalCorrect = 0;
+    }
+  },
+  computed: {
+    quizDone() {
+      if (this.questions.length === this.questionsAnswered) {
+        return true;
+      }
     }
   }
 };
