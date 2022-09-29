@@ -8,8 +8,14 @@
     @question-answered="questionAnswered"
     />
 
-    <Resultss v-else />
+    <Result
+      v-else
+      :results="results"
+      :totalCorrect="totalCorrect"
+    />
+
     <button type="button" class="reset-btn">Reset</button>
+    
   </div>
 </template>
 
