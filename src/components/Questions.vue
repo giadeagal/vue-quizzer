@@ -1,9 +1,11 @@
 <template>
     <div class="questions-ctr">
-        <div class="progress">
-            <div class="bar"></div>
-            <div class="status">1 out of 3 questions answered</div>
-        </div>
+
+        <Progress 
+            :questionsAnswered="questionsAnswered"
+            :questions="questions"
+        />
+
         <div
             class="single-question"
             v-for="(question, qi) in questions"
@@ -26,8 +28,13 @@
 </template>
 
 <script>
+import Progress from './Progress.vue'
+
 export default {
     name: 'Questions',
+    components: {
+    Progress
+    },
     props: ['questions', 'questionsAnswered'],
     emits: ["question-answered"],
     methods: {
